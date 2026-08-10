@@ -34,10 +34,15 @@ function highlightNav() {
   });
 
   navLinksItems.forEach((link) => {
-    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    const href = link.getAttribute('href') || '';
+    const isMatch =
+      href === `#${current}` ||
+      (current && href.endsWith('.html') && href.replace('.html', '') === current);
+    link.classList.toggle('active', isMatch);
   });
 }
 window.addEventListener('scroll', highlightNav);
+highlightNav();
 
 // ===== CURSOR CIRCLE =====
 const cursorGlow = document.getElementById('cursorGlow');
@@ -60,28 +65,30 @@ let roleIndex = 0;
 let charIndex = 0;
 let deleting = false;
 
-function typeLoop() {
-  const current = roles[roleIndex];
-  if (!deleting) {
-    typeWriter.textContent = current.slice(0, ++charIndex);
-    if (charIndex === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, 1800);
-      return;
+if (typeWriter) {
+  function typeLoop() {
+    const current = roles[roleIndex];
+    if (!deleting) {
+      typeWriter.textContent = current.slice(0, ++charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 1800);
+        return;
+      }
+      setTimeout(typeLoop, 100);
+    } else {
+      typeWriter.textContent = current.slice(0, --charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeLoop, 400);
+        return;
+      }
+      setTimeout(typeLoop, 50);
     }
-    setTimeout(typeLoop, 100);
-  } else {
-    typeWriter.textContent = current.slice(0, --charIndex);
-    if (charIndex === 0) {
-      deleting = false;
-      roleIndex = (roleIndex + 1) % roles.length;
-      setTimeout(typeLoop, 400);
-      return;
-    }
-    setTimeout(typeLoop, 50);
   }
+  typeLoop();
 }
-typeLoop();
 
 // ===== ANIMASI PROGRESS BAR =====
 const progressBars = document.querySelectorAll('.progress-bar');
