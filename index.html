@@ -7,10 +7,13 @@
   <title>John Simkha Zane Bracha | Portofolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <!-- SCANLINES OVERLAY -->
+  <div class="scanlines" aria-hidden="true"></div>
 
   <!-- GLOW PENGIKUT KURSOR -->
   <div class="cursor-glow" id="cursorGlow"></div>
@@ -22,46 +25,47 @@
         <span class="logo-mark">
           <span class="logo-letter">J</span><span class="logo-letter">S</span><span class="logo-letter">Z</span><span class="logo-letter">B</span>
         </span>
-        <span class="logo-text">John Simkha</span>
+        <span class="logo-text">John_Simkha</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#tentang" class="nav-link">Tentang</a></li>
-        <li><a href="#keahlian" class="nav-link">Keahlian</a></li>
-        <li><a href="#proyek" class="nav-link">Proyek</a></li>
-        <li><a href="#kontak" class="nav-link">Kontak</a></li>
-        <li><a href="#kontak" class="nav-cta">Hire Me</a></li>
+        <li><a href="#tentang" class="nav-link"><span class="nav-idx">01</span> Tentang</a></li>
+        <li><a href="#keahlian" class="nav-link"><span class="nav-idx">02</span> Keahlian</a></li>
+        <li><a href="#proyek" class="nav-link"><span class="nav-idx">03</span> Proyek</a></li>
+        <li><a href="#kontak" class="nav-link"><span class="nav-idx">04</span> Kontak</a></li>
+        <li><a href="#kontak" class="nav-cta">Hire_Me</a></li>
       </ul>
     </div>
   </header>
 
   <!-- HERO -->
   <section id="hero" class="hero">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
     <div class="grid-overlay"></div>
 
     <div class="container hero-content">
       <span class="hero-badge reveal">
-        <span class="pulse-dot"></span> Tersedia untuk proyek baru
+        <span class="pulse-dot"></span> SYSTEM_ONLINE // TERSEDIA
       </span>
-      <p class="hero-greeting reveal">Halo, saya</p>
-      <h1 class="hero-name reveal">John Simkha <span class="gradient-text">Zane Bracha</span></h1>
-      <h2 class="hero-role reveal">Saya seorang <span class="gradient-text" id="typeWriter">Linux User dan TJKT Student</span></h2>
+      <p class="hero-greeting reveal">&gt; halo, saya</p>
+      <h1 class="hero-name reveal" data-text="John Simkha Zane Bracha">John Simkha <span class="gradient-text">Zane Bracha</span></h1>
+      <h2 class="hero-role reveal">Saya seorang <span class="gradient-text" id="typeWriter">Linux User dan TJKT Student</span><span class="term-cursor"></span></h2>
       <p class="hero-desc reveal">
         Siswa SMK PGRI 1 Tangerang jurusan Teknik Komputer dan Jaringan. Saya menghabiskan waktu dengan mengonfigurasi router MikroTik, menyiapkan server Linux, serta mempelajari cara menjaga jaringan di dunia nyata agar tetap aktif, aman, dan cepat.
       </p>
       <div class="hero-actions reveal">
         <a href="#proyek" class="btn btn-primary">
-          Lihat Proyek <span class="btn-arrow">→</span>
+          Lihat_Proyek <span class="btn-arrow">→</span>
         </a>
         <a href="#kontak" class="btn btn-ghost">
-          <span class="btn-icon">✉</span> Hubungi Saya
+          <span class="btn-icon">✉</span> Hubungi_Saya
         </a>
       </div>
+      <div class="hero-status reveal">
+        <span class="status-line">[ NODE_ID: 01 ]</span>
+        <span class="status-line">[ LOC: TANGERANG ]</span>
+        <span class="status-line">[ SIG: AKTIF ]</span>
       </div>
     </div>
 
@@ -81,26 +85,29 @@
   <!-- TENTANG -->
   <section id="tentang" class="section">
     <div class="container">
-      <h2 class="section-title reveal">Tentang <span class="gradient-text">Saya</span></h2>
+      <div class="section-head reveal">
+        <span class="section-tag">&gt; SECTION_01 // TENTANG</span>
+        <h2 class="section-title">Tentang <span class="gradient-text">Saya</span></h2>
+      </div>
       <div class="about-grid">
         <div class="about-photo reveal">
           <div class="photo-frame">
             <img src="img/foto-profil.jpeg" alt="Foto profil">
           </div>
           <div class="float-card float-card-1">
-            <span class="float-icon">💻</span>
+            <span class="float-icon">[01]</span>
             <div><strong>Mulai Belajar</strong><small>Dasar-dasar Coding</small></div>
           </div>
           <div class="float-card float-card-2">
-            <span class="float-icon">📡</span>
+            <span class="float-icon">[02]</span>
             <div><strong>Praktik Jaringan</strong><small>Konfigurasi MikroTik</small></div>
           </div>
           <div class="float-card float-card-3">
-            <span class="float-icon">🐧</span>
+            <span class="float-icon">[03]</span>
             <div><strong>Server Linux</strong><small>Belajar Admin Dasar</small></div>
           </div>
           <div class="float-card float-card-4">
-            <span class="float-icon">🎓</span>
+            <span class="float-icon">[04]</span>
             <div><strong>TKJ</strong><small>SMK PGRI 1 Tangerang</small></div>
           </div>
         </div>
@@ -124,7 +131,7 @@
             <li><span>Status:</span> SMK PGRI 1 Student</li>
           </ul>
           <a href="#" class="btn btn-primary">
-            Unduh CV <span class="btn-arrow">↓</span>
+            Unduh_CV <span class="btn-arrow">↓</span>
           </a>
         </div>
       </div>
@@ -134,26 +141,29 @@
   <!-- KEAHLIAN -->
   <section id="keahlian" class="section section-alt">
     <div class="container">
-      <h2 class="section-title reveal">Keahlian <span class="gradient-text">Saya</span></h2>
+      <div class="section-head reveal">
+        <span class="section-tag">&gt; SECTION_02 // KEAHLIAN</span>
+        <h2 class="section-title">Keahlian <span class="gradient-text">Saya</span></h2>
+      </div>
       <p class="section-sub reveal">Teknologi yang saya gunakan untuk membangun produk digital.</p>
       <div class="skills-grid">
         <div class="skill-card reveal">
-          <div class="skill-icon"><span>🌐</span></div>
+          <div class="skill-icon"><span>&lt;/&gt;</span></div>
           <h3>HTML &amp; CSS</h3>
           <div class="progress"><div class="progress-bar" data-width="60%"></div></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-icon"><span>⚡</span></div>
+          <div class="skill-icon"><span>{ }</span></div>
           <h3>JavaScript</h3>
           <div class="progress"><div class="progress-bar" data-width="45%"></div></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-icon"><span>🐧</span></div>
+          <div class="skill-icon"><span>&gt;_</span></div>
           <h3>Linux</h3>
           <div class="progress"><div class="progress-bar" data-width="70%"></div></div>
         </div>
         <div class="skill-card reveal">
-          <div class="skill-icon"><span>📡</span></div>
+          <div class="skill-icon"><span>#</span></div>
           <h3>MikroTik</h3>
           <div class="progress"><div class="progress-bar" data-width="76%"></div></div>
         </div>
@@ -164,14 +174,17 @@
   <!-- PROYEK -->
   <section id="proyek" class="section">
     <div class="container">
-      <h2 class="section-title reveal">Proyek <span class="gradient-text">Terbaru</span></h2>
+      <div class="section-head reveal">
+        <span class="section-tag">&gt; SECTION_03 // PROYEK</span>
+        <h2 class="section-title">Proyek <span class="gradient-text">Terbaru</span></h2>
+      </div>
       <p class="section-sub reveal">Praktik dan latihan yang pernah saya kerjakan di sekolah.</p>
       <div class="projects-grid">
         <article class="project-card reveal">
           <div class="project-thumb thumb-1">
-            <span>📶</span>
+            <span class="thumb-code">SYS.01</span>
             <div class="project-overlay">
-              <a href="#" class="btn btn-sm">Lihat Detail</a>
+              <a href="#" class="btn btn-sm">Lihat_Detail</a>
             </div>
           </div>
           <div class="project-body">
@@ -185,9 +198,9 @@
         </article>
         <article class="project-card reveal">
           <div class="project-thumb thumb-2">
-            <span>🐧</span>
+            <span class="thumb-code">SYS.02</span>
             <div class="project-overlay">
-              <a href="#" class="btn btn-sm">Lihat Detail</a>
+              <a href="#" class="btn btn-sm">Lihat_Detail</a>
             </div>
           </div>
           <div class="project-body">
@@ -202,9 +215,9 @@
         </article>
         <article class="project-card reveal">
           <div class="project-thumb thumb-3">
-            <span>🌐</span>
+            <span class="thumb-code">SYS.03</span>
             <div class="project-overlay">
-              <a href="#" class="btn btn-sm">Lihat Detail</a>
+              <a href="#" class="btn btn-sm">Lihat_Detail</a>
             </div>
           </div>
           <div class="project-body">
@@ -224,19 +237,22 @@
   <!-- KONTAK -->
   <section id="kontak" class="section section-alt">
     <div class="container">
-      <h2 class="section-title reveal">Hubungi <span class="gradient-text">Saya</span></h2>
+      <div class="section-head reveal">
+        <span class="section-tag">&gt; SECTION_04 // KONTAK</span>
+        <h2 class="section-title">Hubungi <span class="gradient-text">Saya</span></h2>
+      </div>
       <p class="section-sub reveal">Temukan saya di media sosial atau hubungi langsung lewat email.</p>
       <div class="contact-info reveal">
         <div class="contact-item">
-          <span class="contact-icon">✉</span>
+          <span class="contact-icon">@</span>
           <div><strong>Email</strong><p>johnsimkha1090@email.com</p></div>
         </div>
         <div class="contact-item">
-          <span class="contact-icon">📍</span>
+          <span class="contact-icon">◎</span>
           <div><strong>Lokasi</strong><p>Tangerang, Indonesia</p></div>
         </div>
         <div class="contact-item">
-          <span class="contact-icon">💬</span>
+          <span class="contact-icon">↻</span>
           <div><strong>Respon</strong><p>Dalam 1 - 2 hari</p></div>
         </div>
       </div>
@@ -252,7 +268,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <p>© 2026 John Simkha Zane Bracha. Dibuat dengan 💜 memakai HTML, CSS, JS &amp; PHP.</p>
+      <p>&gt; 2026_John_Simkha_Zane_Bracha // MADE WITH HTML, CSS &amp; JS</p>
     </div>
   </footer>
 
