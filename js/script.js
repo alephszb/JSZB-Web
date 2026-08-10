@@ -39,13 +39,18 @@ function highlightNav() {
 }
 window.addEventListener('scroll', highlightNav);
 
-// ===== CURSOR GLOW =====
+// ===== CURSOR CIRCLE =====
 const cursorGlow = document.getElementById('cursorGlow');
 
 document.addEventListener('mousemove', (e) => {
   if (window.innerWidth <= 768) return;
-  cursorGlow.style.left = e.clientX + 'px';
-  cursorGlow.style.top = e.clientY + 'px';
+  cursorGlow.style.opacity = '1';
+  cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+});
+
+document.querySelectorAll('a, button, .btn, input, textarea').forEach((el) => {
+  el.addEventListener('mouseenter', () => cursorGlow.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursorGlow.classList.remove('hover'));
 });
 
 // ===== TYPEWRITER EFFECT =====

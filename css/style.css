@@ -100,18 +100,28 @@ ul {
   mix-blend-mode: overlay;
 }
 
-/* ===== CURSOR GLOW ===== */
+/* ===== CURSOR CIRCLE ===== */
 .cursor-glow {
   position: fixed;
-  width: 420px;
-  height: 420px;
-  left: -210px;
-  top: -210px;
+  width: 28px;
+  height: 28px;
+  left: 0;
+  top: 0;
+  border: 2px solid var(--text);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.07) 0%, transparent 60%);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.25);
   pointer-events: none;
-  z-index: 0;
-  transition: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: width var(--transition), height var(--transition), opacity 0.2s ease;
+}
+
+.cursor-glow.hover {
+  width: 46px;
+  height: 46px;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.35);
 }
 
 /* ===== TYPOGRAPHY UMUM ===== */
