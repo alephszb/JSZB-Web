@@ -51,13 +51,178 @@
     </div>
   </section>
 
-  <!-- KONTEN (MASIH KOSONG) -->
+  <!-- ISI PROYEK -->
   <section class="section section-alt page-content">
     <div class="container">
-      <div class="empty-slot reveal">
-        <span class="empty-tag">// RUANG_KONSEP</span>
-        <p>Halaman ini masih kosong. Tambahkan konsep dan detail proyek di sini.</p>
+
+      <div class="guide-intro reveal">
+        <p class="section-sub">Cara membuat website portofolio dari nol: tiga bagian (HTML, CSS, JS), tanpa framework, jalan di browser, lalu siap di-deploy online.</p>
       </div>
+
+      <!-- YANG DIBUTUHKAN -->
+      <div class="req-grid">
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.03_REQ</span>
+          <h4>Editor Kode</h4>
+          <p>VS Code, Notepad++, atau editor apa pun untuk menulis kode.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.03_REQ</span>
+          <h4>Browser</h4>
+          <p>Untuk melihat hasil halaman yang sedang dibuat.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.03_REQ</span>
+          <h4>XAMPP / PHP</h4>
+          <p>Opsional, untuk menjalankan server lokal saat mengembangkan.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.03_REQ</span>
+          <h4>GitHub + Vercel</h4>
+          <p>Opsional, untuk menyimpan kode dan publish website ke internet.</p>
+        </div>
+      </div>
+
+      <!-- LANGKAH-LANGKAH -->
+      <div class="steps">
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.01</span>
+            <h3>Buat struktur folder</h3>
+          </div>
+          <p>Satu folder berisi tiga bagian: <span class="mono">HTML</span> untuk isi, <span class="mono">CSS</span> untuk tampilan, <span class="mono">JS</span> untuk perilaku. Semua halaman saling terhubung.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> STRUKTUR // FOLDER</div>
+            <pre>portofolio/
+|-- index.html
+|-- tentang.html
+|-- proyek.html
+|-- kontak.html
+|-- css/
+|   `-- style.css
+`-- js/
+    `-- script.js</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.02</span>
+            <h3>Tulis halaman dasar HTML</h3>
+          </div>
+          <p>Kerangka tiap halaman. File CSS dipanggil di <span class="mono">head</span>, file JS di akhir <span class="mono">body</span>.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> KODE // HTML</div>
+            <pre><span class="c">&lt;!DOCTYPE html&gt;</span>
+&lt;html lang="id"&gt;
+&lt;head&gt;
+  &lt;title&gt;Portofolio&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Halo!&lt;/h1&gt;
+  &lt;script src="js/script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.03</span>
+            <h3>Jalankan di browser / server lokal</h3>
+          </div>
+          <p>Buka <span class="mono">index.html</span> langsung, atau pakai server lokal agar jalur CSS/JS selalu benar.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LOKAL</div>
+            <pre>php -S localhost:8000</pre>
+          </div>
+          <p>Lalu buka <span class="mono">http://localhost:8000</span> di browser.</p>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.04</span>
+            <h3>Edit &amp; lihat hasil</h3>
+          </div>
+          <p>Ubah file lalu refresh browser. Terapkan satu tema yang konsisten di semua halaman agar terlihat profesional.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> CATATAN // DESAIN</div>
+            <pre><span class="c">1. Gunakan palet warna yang sama di semua halaman</span>
+<span class="c">2. Navbar &amp; footer sama di tiap halaman</span>
+<span class="c">3. Perhatikan halaman HP (responsive)</span></pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.05</span>
+            <h3>Deploy online (opsional)</h3>
+          </div>
+          <p>Simpan kode ke GitHub lalu hubungkan ke Vercel. Setiap push ke <span class="mono">main</span> otomatis ter-deploy.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // GIT</div>
+            <pre>git init
+git add -A
+git commit -m "Website portofolio"
+git push origin main</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.06</span>
+            <h3>Uji coba</h3>
+          </div>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> CEK // LANGKAH</div>
+            <pre><span class="c">1. Browser menampilkan halaman + CSS &amp; JS termuat?</span>
+<span class="c">2. Semua halaman (tentang, proyek, kontak) terbuka?</span>
+<span class="c">3. Tampilan konsisten (satu tema)?</span>
+<span class="c">4. (Opsional) Situs sudah online di Vercel?</span></pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">SYS.03</span>
+            <h3>Struktur &amp; perintah inti</h3>
+          </div>
+          <p>Rangkuman struktur folder plus perintah untuk menjalankan dan men-deploy website.</p>
+          <div class="term">
+            <div class="term-bar">
+              <span class="term-dot"></span> TERMINAL // SYS.03
+              <button class="btn btn-sm btn-ghost copy-btn" id="copyPortofolio" type="button">Salin_Semua</button>
+            </div>
+            <pre id="portofolioScript">portofolio/
+|-- index.html
+|-- tentang.html
+|-- proyek.html
+|-- kontak.html
+|-- css/
+|   `-- style.css
+`-- js/
+    `-- script.js
+
+<span class="c"># Jalankan server lokal</span>
+php -S localhost:8000
+
+<span class="c"># Deploy ke Vercel via GitHub</span>
+git init
+git add -A
+git commit -m "Website portofolio"
+git push origin main</pre>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- CATATAN -->
+      <div class="note reveal">
+        <span class="mono">&gt; Selesai jika:</span> halaman tampil lengkap (HTML + CSS + JS), semua halaman terhubung lewat menu, dan (opsional) situs sudah online di Vercel.
+      </div>
+
     </div>
   </section>
 
@@ -69,5 +234,16 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    var copyBtn = document.getElementById('copyPortofolio');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var text = document.getElementById('portofolioScript').innerText;
+        navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Tersalin!';
+        setTimeout(function () { copyBtn.textContent = 'Salin_Semua'; }, 1800);
+      });
+    }
+  </script>
 </body>
 </html>

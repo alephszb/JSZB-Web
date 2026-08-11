@@ -51,13 +51,161 @@
     </div>
   </section>
 
-  <!-- KONTEN (MASIH KOSONG) -->
+  <!-- ISI PROYEK -->
   <section class="section section-alt page-content">
     <div class="container">
-      <div class="empty-slot reveal">
-        <span class="empty-tag">// RUANG_KONSEP</span>
-        <p>Halaman ini masih kosong. Tambahkan konsep dan detail proyek di sini.</p>
+
+      <div class="guide-intro reveal">
+        <p class="section-sub">Langkah-langkah sederhana untuk membuat jaringan hotspot MikroTik: perangkat pengunjung harus login dulu ke halaman beranda, dan bandwidth tiap pengguna dibatasi agar koneksi tetap nyaman.</p>
       </div>
+
+      <!-- YANG DIBUTUHKAN -->
+      <div class="req-grid">
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.01_REQ</span>
+          <h4>Router MikroTik</h4>
+          <p>RouterBoard atau PC RouterOS. Contoh ini pakai 2 port: <span class="mono">ether1</span> untuk internet, <span class="mono">ether2</span> untuk hotspot.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.01_REQ</span>
+          <h4>Koneksi Internet</h4>
+          <p>Modem ISP sebagai sumber internet, disambung kabel LAN ke ether1.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.01_REQ</span>
+          <h4>PC + Winbox</h4>
+          <p>Untuk mengatur router. Bisa juga pakai SSH atau WebFig dari browser.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.01_REQ</span>
+          <h4>Akses Client</h4>
+          <p>Access Point WiFi atau kabel LAN ke ether2 agar perangkat pengunjung bisa terhubung.</p>
+        </div>
+      </div>
+
+      <!-- LANGKAH-LANGKAH -->
+      <div class="steps">
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.01</span>
+            <h3>Beri nama router &amp; ambil internet dari modem</h3>
+          </div>
+          <p>Pastikan <span class="mono">ether1</span> sudah dicolok ke modem ISP. Buka Winbox, masuk menu <span class="mono">Terminal</span>, lalu jalankan:</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // MIKROTIK</div>
+            <pre>/system identity set name=Hotspot-Warkop
+/ip dhcp-client add interface=ether1 disabled=no</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.02</span>
+            <h3>Beri IP untuk jaringan lokal &amp; DNS</h3>
+          </div>
+          <p>IP ini yang nanti dipakai client saat terkoneksi (gerbang hotspot). Ganti angka terakhir jika bentrok dengan jaringan modem.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // MIKROTIK</div>
+            <pre>/ip address add address=192.168.100.1/24 interface=ether2
+/ip dns set servers=8.8.8.8,1.1.1.1 allow-remote-requests=yes</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.03</span>
+            <h3>Aktifkan DHCP Server</h3>
+          </div>
+          <p>Supaya perangkat client dapat IP otomatis tanpa disetel manual.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // MIKROTIK</div>
+            <pre>/ip pool add name=pool-hotspot ranges=192.168.100.10-192.168.100.200
+/ip dhcp-server add name=dhcp-hotspot interface=ether2 address-pool=pool-hotspot
+/ip dhcp-server network add address=192.168.100.0/24 gateway=192.168.100.1 dns-server=192.168.100.1
+/ip dhcp-server enable dhcp-hotspot</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.04</span>
+            <h3>Aktifkan Hotspot &amp; buat user login</h3>
+          </div>
+          <p>Halaman login bawaan MikroTik sudah tersedia otomatis. Buat satu akun pengguna untuk mencoba.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // MIKROTIK</div>
+            <pre>/ip hotspot add name=hotspot1 interface=ether2
+/ip hotspot server profile set [ find ] hotspot-address=192.168.100.1
+/ip hotspot user add name=tamu password=12345</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.05</span>
+            <h3>Batasi bandwidth per pengguna</h3>
+          </div>
+          <p>Format <span class="mono">rate-limit</span> adalah <span class="mono">download/upload</span>. Contoh di bawah: tiap pengguna maksimal 5 Mbps unduh dan 2 Mbps unggah.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // MIKROTIK</div>
+            <pre>/ip hotspot server profile set [ find ] rate-limit=5M/2M</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.06</span>
+            <h3>Uji coba</h3>
+          </div>
+          <p>Hubungkan HP/PC ke <span class="mono">ether2</span> (via AP WiFi atau kabel), lalu buka alamat apa saja di browser. Halaman login hotspot akan muncul.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> CEK // LANGKAH</div>
+            <pre><span class="c">1. Browser menampilkan halaman login hotspot?</span>
+<span class="c">2. Login dengan tamu / 12345 berhasil?</span>
+<span class="c">3. Internet jalan &amp; kecepatan dibatasi?</span>
+<span class="c">Tambah user baru: Winbox &gt; IP &gt; Hotspot &gt; Users &gt; Tambah</span></pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">SYS.01</span>
+            <h3>Semua perintah sekaligus</h3>
+          </div>
+          <p>Salin semua perintah di bawah, tempel ke <span class="mono">Terminal</span> Winbox, tekan Enter. Urutan sudah benar dari atas ke bawah.</p>
+          <div class="term">
+            <div class="term-bar">
+              <span class="term-dot"></span> TERMINAL // MIKROTIK
+              <button class="btn btn-sm btn-ghost copy-btn" id="copyHotspot" type="button">Salin_Semua</button>
+            </div>
+            <pre id="hotspotScript"><span class="c"># 1. Identitas router</span>
+/system identity set name=Hotspot-Warkop
+<span class="c"># 2. ether1 terima internet dari modem</span>
+/ip dhcp-client add interface=ether1 disabled=no
+<span class="c"># 3. IP lokal &amp; DNS</span>
+/ip address add address=192.168.100.1/24 interface=ether2
+/ip dns set servers=8.8.8.8,1.1.1.1 allow-remote-requests=yes
+<span class="c"># 4. DHCP server</span>
+/ip pool add name=pool-hotspot ranges=192.168.100.10-192.168.100.200
+/ip dhcp-server add name=dhcp-hotspot interface=ether2 address-pool=pool-hotspot
+/ip dhcp-server network add address=192.168.100.0/24 gateway=192.168.100.1 dns-server=192.168.100.1
+/ip dhcp-server enable dhcp-hotspot
+<span class="c"># 5. Hotspot + user login</span>
+/ip hotspot add name=hotspot1 interface=ether2
+/ip hotspot server profile set [ find ] hotspot-address=192.168.100.1
+/ip hotspot server profile set [ find ] rate-limit=5M/2M
+/ip hotspot user add name=tamu password=12345</pre>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- CATATAN -->
+      <div class="note reveal">
+        <span class="mono">&gt; Selesai jika:</span> perangkat client menampilkan halaman login saat membuka browser, internet jalan setelah login dengan <span class="mono">tamu / 12345</span>, dan kecepatan terbatas sesuai <span class="mono">rate-limit</span>.
+      </div>
+
     </div>
   </section>
 
@@ -69,5 +217,16 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    var copyBtn = document.getElementById('copyHotspot');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var text = document.getElementById('hotspotScript').innerText;
+        navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Tersalin!';
+        setTimeout(function () { copyBtn.textContent = 'Salin_Semua'; }, 1800);
+      });
+    }
+  </script>
 </body>
 </html>

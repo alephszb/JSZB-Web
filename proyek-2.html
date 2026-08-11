@@ -51,13 +51,157 @@
     </div>
   </section>
 
-  <!-- KONTEN (MASIH KOSONG) -->
+  <!-- ISI PROYEK -->
   <section class="section section-alt page-content">
     <div class="container">
-      <div class="empty-slot reveal">
-        <span class="empty-tag">// RUANG_KONSEP</span>
-        <p>Halaman ini masih kosong. Tambahkan konsep dan detail proyek di sini.</p>
+
+      <div class="guide-intro reveal">
+        <p class="section-sub">Cara sederhana membangun web server di Linux: pasang Apache + PHP lewat terminal, lalu tampilkan halaman yang bisa diakses dari browser.</p>
       </div>
+
+      <!-- YANG DIBUTUHKAN -->
+      <div class="req-grid">
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.02_REQ</span>
+          <h4>Server Linux</h4>
+          <p>Ubuntu/Debian, bisa VPS atau mesin virtual. Perlu akses root/sudo lewat SSH.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.02_REQ</span>
+          <h4>Koneksi Internet</h4>
+          <p>Dibutuhkan saat mengunduh paket lewat <span class="mono">apt</span>.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.02_REQ</span>
+          <h4>PC Admin</h4>
+          <p>Untuk masuk SSH ke server dan membuka halaman web di browser.</p>
+        </div>
+        <div class="req-card reveal">
+          <span class="req-code">&gt; SYS.02_REQ</span>
+          <h4>IP / Domain</h4>
+          <p>Alamat server untuk mengakses situs, misalnya <span class="mono">http://IP-SERVER</span>.</p>
+        </div>
+      </div>
+
+      <!-- LANGKAH-LANGKAH -->
+      <div class="steps">
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.01</span>
+            <h3>Update sistem dulu</h3>
+          </div>
+          <p>Perbarui daftar paket agar semua yang diinstall selalu versi terbaru. Prosesnya bisa berjalan beberapa menit.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>sudo apt update && sudo apt upgrade -y</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.02</span>
+            <h3>Install Apache &amp; PHP</h3>
+          </div>
+          <p><span class="mono">Apache</span> adalah web server-nya, <span class="mono">PHP</span> untuk membuat halaman dinamis.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>sudo apt install apache2 php libapache2-mod-php -y</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.03</span>
+            <h3>Nyalakan &amp; aktifkan otomatis</h3>
+          </div>
+          <p>Pastikan Apache berjalan dan ikut menyala otomatis saat server dinyalakan. Tekan <span class="mono">q</span> untuk keluar dari tampilan status.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>sudo systemctl start apache2
+sudo systemctl enable apache2
+systemctl status apache2</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.04</span>
+            <h3>Izinkan HTTP di firewall</h3>
+          </div>
+          <p>Lewati langkah ini jika tidak memakai firewall <span class="mono">ufw</span>.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>sudo ufw allow 'Apache'</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.05</span>
+            <h3>Buat halaman tes PHP</h3>
+          </div>
+          <p>Tulis file <span class="mono">index.php</span> di folder web default <span class="mono">/var/www/html</span>. Ganti isinya dengan halaman milikmu.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>echo "&lt;?php echo 'Server OK'; ?&gt;" | sudo tee /var/www/html/index.php</pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">STEP.06</span>
+            <h3>Uji coba</h3>
+          </div>
+          <p>Cari tahu alamat IP server dengan perintah di bawah, lalu buka alamat tersebut di browser.</p>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> TERMINAL // LINUX</div>
+            <pre>hostname -I</pre>
+          </div>
+          <div class="term">
+            <div class="term-bar"><span class="term-dot"></span> CEK // LANGKAH</div>
+            <pre><span class="c">1. Browser menampilkan "Server OK"?</span>
+<span class="c">2. Status Apache active (running)?</span>
+<span class="c">3. Halaman PHP benar-benar berjalan?</span></pre>
+          </div>
+        </article>
+
+        <article class="guide-step reveal">
+          <div class="step-head">
+            <span class="step-num">SYS.02</span>
+            <h3>Semua perintah sekaligus</h3>
+          </div>
+          <p>Salin semua perintah di bawah, tempel ke terminal, tekan Enter. Urutan sudah benar dari atas ke bawah.</p>
+          <div class="term">
+            <div class="term-bar">
+              <span class="term-dot"></span> TERMINAL // LINUX
+              <button class="btn btn-sm btn-ghost copy-btn" id="copyWebServer" type="button">Salin_Semua</button>
+            </div>
+            <pre id="webserverScript"><span class="c"># 1. Update sistem</span>
+sudo apt update && sudo apt upgrade -y
+
+<span class="c"># 2. Install Apache + PHP</span>
+sudo apt install apache2 php libapache2-mod-php -y
+
+<span class="c"># 3. Nyalakan &amp; aktifkan otomatis</span>
+sudo systemctl start apache2
+sudo systemctl enable apache2
+
+<span class="c"># 4. Izinkan HTTP (lewati jika tidak pakai ufw)</span>
+sudo ufw allow 'Apache'
+
+<span class="c"># 5. Halaman tes</span>
+echo "&lt;?php echo 'Server OK'; ?&gt;" | sudo tee /var/www/html/index.php</pre>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- CATATAN -->
+      <div class="note reveal">
+        <span class="mono">&gt; Selesai jika:</span> browser menampilkan <span class="mono">Server OK</span>, status Apache <span class="mono">active (running)</span>, dan halaman PHP berjalan dengan benar.
+      </div>
+
     </div>
   </section>
 
@@ -69,5 +213,16 @@
   </footer>
 
   <script src="js/script.js"></script>
+  <script>
+    var copyBtn = document.getElementById('copyWebServer');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        var text = document.getElementById('webserverScript').innerText;
+        navigator.clipboard.writeText(text);
+        copyBtn.textContent = 'Tersalin!';
+        setTimeout(function () { copyBtn.textContent = 'Salin_Semua'; }, 1800);
+      });
+    }
+  </script>
 </body>
 </html>
