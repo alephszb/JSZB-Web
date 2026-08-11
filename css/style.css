@@ -851,6 +851,7 @@ ul {
 }
 
 .project-card {
+  display: block;
   background: var(--surface);
   border: 1px solid var(--border);
   transition: border-color var(--transition), transform var(--transition);
@@ -1058,6 +1059,32 @@ ul {
 
 .page-content {
   padding-top: 40px;
+}
+
+.page-hero .btn {
+  margin-top: 26px;
+}
+
+/* Slot kosong untuk halaman detail proyek */
+.empty-slot {
+  border: 1px dashed var(--border-strong);
+  background: var(--bg);
+  padding: 100px 30px;
+  text-align: center;
+}
+
+.empty-tag {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+}
+
+.empty-slot p {
+  color: var(--text-dim);
+  font-size: 0.95rem;
 }
 
 /* ===== INDEX / EXPLORE ===== */
